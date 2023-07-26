@@ -792,13 +792,13 @@ mjx-container[display="true"] + br {
                         <div class="article-prev">
                             <a class="prev"
                             rel="prev"
-                            href="/2022/09/09/%E5%87%B8%E5%8C%85%E6%80%BB%E7%BB%93/"
+                            href="/2022/09/09/%E5%8D%8A%E5%B9%B3%E9%9D%A2%E4%BA%A4%E8%AF%A6%E8%A7%A3/"
                             >
                                 <span class="left arrow-icon flex-center">
                                     <i class="fa-solid fa-chevron-left"></i>
                                 </span>
                                 <span class="title flex-center">
-                                    <span class="post-nav-title-item">凸包</span>
+                                    <span class="post-nav-title-item">半平面交</span>
                                     <span class="post-nav-item">Prev posts</span>
                                 </span>
                             </a>
@@ -811,46 +811,42 @@ mjx-container[display="true"] + br {
 
             
                 <div class="comment-container">
-                    <div class="comments-container">
-    <div id="comment-anchor"></div>
-    <div class="comment-area-title">
-        <i class="fa-solid fa-comments"></i>&nbsp;Comments
-    </div>
-    
+                    if (hexo-config('comment.enable') == true && hexo-config('comment.system') != "") {
+  if (hexo-config('comment.system') == "waline") {
+    @require "./waline.styl"
 
-        
-            
- 
-    <div id="waline"></div>
-    <script type="module"  data-pjax>
-        import { init } from 'https://evan.beee.top/js/waline.mjs';
+  } else if (hexo-config('comment.system') == "gitalk") {
+    @require "./gitalk.styl"
 
-        function loadWaline() {
-            init({
-                el: '#waline',
-                serverURL: 'https://example.example.com',
-                lang: 'zh-CN',
-                dark: 'body[class~="dark-mode"]',
-                requiredMeta: ['nick','mail'], // cannot customize by theme config, change it yourself
-            });
-        }
+  } else if (hexo-config('comment.system') == "twikoo") {
+    @require "./twikoo.styl"
+  }
+}
 
-        if ('true') {
-            const loadWalineTimeout = setTimeout(() => {
-                loadWaline();
-                clearTimeout(loadWalineTimeout);
-            }, 1000);
-        } else {
-            window.addEventListener('DOMContentLoaded', loadWaline);
-        }
-        
-    </script>
+.comments-container
+  display inline-block
+  margin-top $spacing-unit
+  width 100%
 
+  #comment-anchor
+    width 100%
+    height 10px
 
+  .comment-area-title
+    width 100%
+    margin 10px 0
+    font-size 1.38rem
+    color var(--default-text-color)
+    font-family 'Noto Sans', 'Noto Sans SC', sans-serif
+    font-weight bold
 
-        
-    
-</div>
+    i
+      color var(--default-text-color)
+
+    +redefine-tablet()
+      margin 5px 0
+      font-size 1.2rem
+
 
                 </div>
             
